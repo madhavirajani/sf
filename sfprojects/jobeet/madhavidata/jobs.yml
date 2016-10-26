@@ -20,7 +20,7 @@ JobeetJob:
     is_activated: true
     token:        job_sensio_labs
     email:        job@example.com
-    expires_at:   '2010-10-10'
+    expires_at:   '2016-12-12'
  
   job_extreme_sensio:
     JobeetCategory:  design
@@ -46,4 +46,30 @@ JobeetJob:
     is_activated: true
     token:        job_extreme_sensio
     email:        job@example.com
-    expires_at:   '2010-10-10'
+    expires_at:   '2016-12-12'
+    
+  job_extreme_sensio1:
+    JobeetCategory:  manager
+    type:         part-time
+    company:      Extreme Sensio1
+    logo:         extreme-sensio.gif
+    url:          http://www.extreme-sensio.com/
+    position:     Web Devloper
+    location:     Paris, France
+    description:  |
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+      eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+      enim ad minim veniam, quis nostrud exercitation ullamco laboris
+      nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
+      in reprehenderit in.
+ 
+      Voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa
+      qui officia deserunt mollit anim id est laborum.
+    how_to_apply: |
+      Send your resume to fabien.potencier [at] sensio.com
+    is_public:    true
+    is_activated: true
+    token:        job_extreme_sensio
+    email:        job@example.com
+    expires_at:   '2016-12-12'
