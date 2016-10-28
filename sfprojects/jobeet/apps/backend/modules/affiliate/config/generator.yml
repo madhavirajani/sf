@@ -1,6 +1,6 @@
 config:
   fields:
-    is_active: { label: Active }
+    is_active: { label: 'Active?' }
   list:
     title:   Affiliate Management
     display: [is_active, url, email, token]

@@ -1,3 +1,4 @@
+<!-- apps/frontend/modules/affiliate/templates/newSuccess.php -->
 <?php use_stylesheet('job.css') ?>
  
 <h1>Become an Affiliate</h1>

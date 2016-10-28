@@ -1,14 +1,8 @@
-# data/fixtures/categories.yml
-JobeetCategory:
-  design:
-    name: Design
-    slug: desing
-  programming:
-    name: Programming
-    slug: programming
-  manager:
-    name: Manager
-    slug: manager
-  administrator:
-    name: Administrator
-    slug: administrator
+sfGuardUser:
+  admin:
+    email_address: madhavirajani25@gmail.com
+    username: admin
+    password: admin
+    first_name: Fabien
+    last_name: Potencier
+    is_super_admin: true

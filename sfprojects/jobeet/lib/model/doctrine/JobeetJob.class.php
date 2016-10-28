@@ -12,6 +12,48 @@
  */
 class JobeetJob extends BaseJobeetJob
 {
+	public function delete(Doctrine_Connection $conn = null)
+	{
+		$index = JobeetJobTable::getLuceneIndex();
+	
+		foreach ($index->find('pk:'.$this->getId()) as $hit)
+		{
+			$index->delete($hit->id);
+		}
+	
+		return parent::delete($conn);
+	}
+	public function updateLuceneIndex()
+	{
+		$index = JobeetJobTable::getLuceneIndex();
+	
+		// remove existing entries
+		foreach ($index->find('pk:'.$this->getId()) as $hit)
+		{
+			$index->delete($hit->id);
+		}
+	
+		// don't index expired and non-activated jobs
+		if ($this->isExpired() || !$this->getIsActivated())
+		{
+			return;
+		}
+	
+		$doc = new Zend_Search_Lucene_Document();
+	
+		// store job primary key to identify it in the search results
+		$doc->addField(Zend_Search_Lucene_Field::Keyword('pk', $this->getId()));
+	
+		// index job fields
+		$doc->addField(Zend_Search_Lucene_Field::UnStored('position', $this->getPosition(), 'utf-8'));
+		$doc->addField(Zend_Search_Lucene_Field::UnStored('company', $this->getCompany(), 'utf-8'));
+		$doc->addField(Zend_Search_Lucene_Field::UnStored('location', $this->getLocation(), 'utf-8'));
+		$doc->addField(Zend_Search_Lucene_Field::UnStored('description', $this->getDescription(), 'utf-8'));
+	
+		// add job to the index
+		$index->addDocument($doc);
+		$index->commit();
+	}
 	public function asArray($host)
 	{
 		return array(
@@ -42,12 +84,24 @@ class JobeetJob extends BaseJobeetJob
 		return Jobeet::slugify($this->getLocation());
 	}
 	public function save(Doctrine_Connection $conn = null)
-	{			
-		if (!$this->getToken())
+	{
+		$conn = $conn ? $conn : $this->getTable()->getConnection();
+		$conn->beginTransaction();
+		try
 		{
-			$this->setToken(sha1($this->getEmail().rand(11111, 99999)));
+			$ret = parent::save($conn);
+	
+			$this->updateLuceneIndex();
+	
+			$conn->commit();
+	
+			return $ret;
 		}
-		return parent::save($conn);
+		catch (Exception $e)
+		{
+			$conn->rollBack();
+			throw $e;
+		}
 	}
 	public function getTypeName()
 	{
