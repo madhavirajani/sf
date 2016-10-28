@@ -1,11 +1,9 @@
 job:
-  class:   sfDoctrineRouteCollection
-  options:
-    model:          JobeetJob
-    column:         token
-    object_actions: { publish: put }
-  requirements:
-    token: \w+
+  url:     /job.:sf_format
+  class:   sfDoctrineRoute
+  options: { model: JobeetJob, type: list }
+  param:   { module: job, action: index, sf_format: html }
+  requirements: { sf_method: get }
    
 job_new:
   url:     /job/new.:sf_format
@@ -76,3 +74,10 @@ api_jobs:
   options: { model: JobeetJob, type: list, method: getForToken }
   requirements:
     sf_format: (?:xml|json|yaml)
+    
+affiliate:
+  class:   sfDoctrineRouteCollection
+  options:
+    model: JobeetAffiliate
+    actions: [new, create]
+    object_actions: { wait: get }

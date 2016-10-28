@@ -12,6 +12,19 @@
  */
 class JobeetAffiliate extends BaseJobeetAffiliate
 {
+	public function activate()
+	{
+		$this->setIsActive(true);
+	
+		return $this->save();
+	}
+	
+	public function deactivate()
+	{
+		$this->setIsActive(false);
+	
+		return $this->save();
+	}
 	public function save(Doctrine_Connection $conn = null)
 	{
 		if (!$this->getToken())
