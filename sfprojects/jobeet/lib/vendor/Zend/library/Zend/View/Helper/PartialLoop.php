@@ -1,46 +1,45 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * Zend Framework
  *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * LICENSE
+ *
+ * This source file is subject to the new BSD license that is bundled
+ * with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://framework.zend.com/license/new-bsd
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@zend.com so we can send you a copy immediately.
+ *
+ * @category   Zend
+ * @package    Zend_View
+ * @subpackage Helper
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @version    $Id: PartialLoop.php 20096 2010-01-06 02:05:09Z bkarwin $
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\View\Helper;
-
-use Traversable;
-use Zend\Stdlib\ArrayUtils;
-use Zend\View\Exception;
+/** Zend_View_Helper_Partial */
+require_once 'Zend/View/Helper/Partial.php';
 
 /**
  * Helper for rendering a template fragment in its own variable scope; iterates
  * over data provided and renders for each iteration.
+ *
+ * @package    Zend_View
+ * @subpackage Helper
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class PartialLoop extends Partial
+class Zend_View_Helper_PartialLoop extends Zend_View_Helper_Partial
 {
+
     /**
      * Marker to where the pointer is at in the loop
-     *
-     * @var int
+     * @var integer
      */
     protected $partialCounter = 0;
-
-    /**
-     * The current nesting level
-     *
-     * @var int
-     */
-    private $nestingLevel = 0;
-
-    /**
-     * Stack with object keys for each nested level
-     *
-     * @var array indexed by nesting level
-     */
-    private $objectKeyStack = array(
-        0 => null,
-    );
 
     /**
      * Renders a template fragment within a variable scope distinct from the
@@ -48,116 +47,52 @@ class PartialLoop extends Partial
      *
      * If no arguments are provided, returns object instance.
      *
-     * @param  string $name   Name of view script
-     * @param  array  $values Variables to populate in the view
-     * @throws Exception\InvalidArgumentException
+     * @param  string $name Name of view script
+     * @param  string|array $module If $model is empty, and $module is an array,
+     *                              these are the variables to populate in the
+     *                              view. Otherwise, the module in which the
+     *                              partial resides
+     * @param  array $model Variables to populate in the view
      * @return string
      */
-    public function __invoke($name = null, $values = null)
+    public function partialLoop($name = null, $module = null, $model = null)
     {
         if (0 == func_num_args()) {
             return $this;
         }
 
-        // reset the counter if it's called again
-        $this->partialCounter = 0;
+        if ((null === $model) && (null !== $module)) {
+            $model  = $module;
+            $module = null;
+        }
+
+        if (!is_array($model)
+            && (!$model instanceof Traversable)
+            && (is_object($model) && !method_exists($model, 'toArray'))
+        ) {
+            require_once 'Zend/View/Helper/Partial/Exception.php';
+            $e = new Zend_View_Helper_Partial_Exception('PartialLoop helper requires iterable data');
+            $e->setView($this->view);
+            throw $e;
+        }
+
+        if (is_object($model)
+            && (!$model instanceof Traversable)
+            && method_exists($model, 'toArray')
+        ) {
+            $model = $model->toArray();
+        }
+
         $content = '';
-
-        foreach ($this->extractViewVariables($values) as $item) {
-            $this->nestObjectKey();
-
+        // reset the counter if it's call again
+        $this->partialCounter = 0;
+        foreach ($model as $item) {
+            // increment the counter variable
             $this->partialCounter++;
-            $content .= parent::__invoke($name, $item);
 
-            $this->unNestObjectKey();
+            $content .= $this->partial($name, $module, $item);
         }
 
         return $content;
-    }
-
-    /**
-     * Get the partial counter
-     *
-     * @return int
-     */
-    public function getPartialCounter()
-    {
-        return $this->partialCounter;
-    }
-
-    /**
-     * Set object key in this loop and any child loop
-     *
-     * {@inheritDoc}
-     *
-     * @param string|null $key
-     *
-     * @return self
-     */
-    public function setObjectKey($key)
-    {
-        if (null === $key) {
-            unset($this->objectKeyStack[$this->nestingLevel]);
-        } else {
-            $this->objectKeyStack[$this->nestingLevel] = (string) $key;
-        }
-
-        return parent::setObjectKey($key);
-    }
-
-    /**
-     * Increment nestedLevel and default objectKey to parent's value
-     *
-     * @return self
-     */
-    private function nestObjectKey()
-    {
-        $this->nestingLevel += 1;
-
-        $this->setObjectKey($this->getObjectKey());
-
-        return $this;
-    }
-
-    /**
-     * Decrement nestedLevel and restore objectKey to parent's value
-     *
-     * @return self
-     */
-    private function unNestObjectKey()
-    {
-        $this->setObjectKey(null);
-
-        $this->nestingLevel -= 1;
-        if (isset($this->objectKeyStack[$this->nestingLevel])) {
-            $this->objectKey = $this->objectKeyStack[$this->nestingLevel];
-        }
-
-        return $this;
-    }
-
-    /**
-     * @param mixed $values
-     *
-     * @return array Variables to populate in the view
-     */
-    private function extractViewVariables($values)
-    {
-        if ($values instanceof Traversable) {
-            return ArrayUtils::iteratorToArray($values, false);
-        }
-
-        if (is_array($values)) {
-            return $values;
-        }
-
-        if (is_object($values) && method_exists($values, 'toArray')) {
-            return $values->toArray();
-        }
-
-        throw new Exception\InvalidArgumentException(sprintf(
-            'PartialLoop helper requires iterable data, %s given',
-            is_object($values) ? get_class($values) : gettype($values)
-        ));
     }
 }

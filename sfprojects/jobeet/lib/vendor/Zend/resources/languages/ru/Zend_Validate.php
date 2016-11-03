@@ -1,10 +1,23 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * Zend Framework
  *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * LICENSE
+ *
+ * This source file is subject to the new BSD license that is bundled
+ * with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://framework.zend.com/license/new-bsd
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@zend.com so we can send you a copy immediately.
+ *
+ * @category   Zend
+ * @package    Zend_Translate
+ * @subpackage Ressource
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id:$
  */
 
 /**
@@ -20,11 +33,6 @@ return array(
     "Invalid type given, value should be a string" => "Недопустимый тип данных, значение должно быть строкой",
     "'%value%' contains non alphabetic characters" => "'%value%' содержит не буквенные символы",
     "'%value%' is an empty string" => "'%value%' - пустая строка",
-    
-    // Zend\I18n\Validator\PhoneNumber
-    "The input does not match a phone number format" => "Неправильный формат номера телефона",
-    "The country provided is currently unsupported" => "Страна в настоящее время не поддерживается",
-    "Invalid type given. String expected" => "Недопустимый тип данных, значение должно быть строкой",
 
     // Zend_Validate_Barcode
     "'%value%' failed checksum validation" => "'%value%' ошибка проверки контрольной суммы",
@@ -69,13 +77,13 @@ return array(
 
     // Zend_Validate_EmailAddress
     "Invalid type given, value should be a string" => "Недопустимый тип данных, значение должно быть строкой",
-    "'%value%' is not a valid email address in the basic format local-part@hostname" => "'%value%' недопустимый адрес электронной почты. Введите его в формате имя@домен",
-    "'%hostname%' is not a valid hostname for email address '%value%'" => "'%hostname%' недопустимое имя хоста для адреса '%value%'",
+    "'%value%' is no valid email address in the basic format local-part@hostname" => "'%value%' недопустимый адрес электронной почты. Введите его в формате имя@домен",
+    "'%hostname%' is no valid hostname for email address '%value%'" => "'%hostname%' недопустимое имя хоста для адреса '%value%'",
     "'%hostname%' does not appear to have a valid MX record for the email address '%value%'" => "'%hostname%' не имеет корректной MX-записи об адресе '%value%'",
     "'%hostname%' is not in a routable network segment. The email address '%value%' should not be resolved from public network." => "'%hostname%' не является маршрутизируемым сегментом сети. Адрес электронной почты '%value%' не может быть получен из публичной сети.",
     "'%localPart%' can not be matched against dot-atom format" => "'%localPart% не соответствует формату dot-atom",
     "'%localPart%' can not be matched against quoted-string format" => "'%localPart%' не соответствует формату quoted-string",
-    "'%localPart%' is not a valid local part for email address '%value%'" => "'%localPart%' недопустимое имя для адреса '%value%'",
+    "'%localPart%' is no valid local part for email address '%value%'" => "'%localPart%' недопустимое имя для адреса '%value%'",
     "'%value%' exceeds the allowed length" => "'%value%' превышает допустимую длину",
 
     // Zend_Validate_File_Count
@@ -128,7 +136,7 @@ return array(
 
     // Zend_Validate_File_IsImage
     "File '%value%' is no image, '%type%' detected" => "Файл '%value%' не является изображением. MIME-тип файла - '%type%'",
-    "The mimetype of file '%value%' could not be detected" => "Не удается определить MIME-тип файла '%value%'",
+    "The mimetype of file '%value%' could not been detected" => "Не удается определить MIME-тип файла '%value%'",
     "File '%value%' can not be read" => "Файл '%value%' не может быть прочитан",
 
     // Zend_Validate_File_Md5
@@ -168,7 +176,7 @@ return array(
 
     // Zend_Validate_File_WordCount
     "Too much words, maximum '%max%' are allowed but '%count%' were counted" => "Слишком много слов, разрешено максимум '%max%' слов, но сейчас - '%count%'",
-    "Too few words, minimum '%min%' are expected but '%count%' were counted" => "Слишком мало слов, разрешено минимум '%min%' слов, но сейчас - '%count%'",
+    "Too less words, minimum '%min%' are expected but '%count%' were counted" => "Слишком мало слов, разрешено минимум '%min%' слов, но сейчас - '%count%'",
     "File '%value%' could not be found" => "Файл '%value%' не найден",
 
     // Zend_Validate_Float
@@ -183,18 +191,17 @@ return array(
     "'%value%' has not only hexadecimal digit characters" => "Значение '%value%' должно содержать только шестнадцатиричные символы",
 
     // Zend_Validate_Hostname
-    "The input appears to be a DNS hostname but the given punycode notation cannot be decoded" => "Значение похоже на DNS имя хоста, но указанное значение не может быть преобразованно в допустимый для DNS набор символов",
-    "Invalid type given. String expected" => "Недопустимый тип данных, значение должно быть строкой",
-    "The input appears to be a DNS hostname but contains a dash in an invalid position" => "Значение похоже на DNS имя хоста, но знак '-' находится в недопустимом месте",
-    "The input does not match the expected structure for a DNS hostname" => 'Значение не соответствует структуре DNS имени хоста',
-    "The input appears to be a DNS hostname but cannot match against hostname schema for TLD '%tld%'" => "Значение похоже на DNS имя хоста, но оно не соответствует шаблону для доменных имен верхнего уровня '%tld%'",
-    "The input does not appear to be a valid local network name" => "Значение является недопустимым локальным сетевым адресом",
-    "The input does not appear to be a valid local network name" => "Значение является недопустимым URI имени хоста",
-    "The input appears to be an IP address, but IP addresses are not allowed" => "Значение похоже на IP-адрес, но IP-адреса не разрешены",
-    "The input appears to be a local network name but local network names are not allowed" => 'Значение похоже на адрес в локальной сети. Локальные адреса не разрешены',
-    "The input appears to be a DNS hostname but cannot extract TLD part" => "Значение похоже на DNS имя хоста, но не удаётся извлечь домен верхнего уровня",
-    "The input appears to be a DNS hostname but cannot match TLD against known list" => "Значение похоже на DNS имя хоста, но оно не дожно быть из списка доменов верхнего уровня",
-    
+    "Invalid type given, value should be a string" => "Недопустимый тип данных, значение должно быть строкой",
+    "'%value%' appears to be an IP address, but IP addresses are not allowed" => "Значение '%value%' выглядит как IP-адрес, но IP-адреса не разрешены",
+    "'%value%' appears to be a DNS hostname but cannot match TLD against known list" => "'%value%' выглядит как DNS имя хоста, но оно не дожно быть из списка доменов верхнего уровня",
+    "'%value%' appears to be a DNS hostname but contains a dash in an invalid position" => "'%value%' выглядит как DNS имя хоста, но знак '-' находится в недопустимом месте",
+    "'%value%' appears to be a DNS hostname but cannot match against hostname schema for TLD '%tld%'" => "'%value%' выглядит как DNS имя хоста, но оно не соответствует шаблону для доменных имен верхнего уровня '%tld%'",
+    "'%value%' appears to be a DNS hostname but cannot extract TLD part" => "'%value%' выглядит как DNS имя хоста, но не удаётся извлечь домен верхнего уровня",
+    "'%value%' does not match the expected structure for a DNS hostname" => "'%value%' не соответствует ожидаемой структуре для DNS имени хоста",
+    "'%value%' does not appear to be a valid local network name" => "'%value%' является недопустимым локальным сетевым адресом",
+    "'%value%' appears to be a local network name but local network names are not allowed" => "'%value%' выглядит как локальный сетевой адрес, но локальные сетевые адреса не разрешены",
+    "'%value%' appears to be a DNS hostname but the given punycode notation cannot be decoded" => "'%value%' выглядит как DNS имя хоста, но указанное значение не может быть преобразованно в допустимый для DNS набор символов",
+
     // Zend_Validate_Iban
     "Unknown country within the IBAN '%value%'" => "Не известная страна IBAN '%value%'",
     "'%value%' has a false IBAN format" => "'%value%' имеет недопустимый IBAN формат",
@@ -216,7 +223,7 @@ return array(
     "'%value%' does not appear to be a valid IP address" => "'%value%' не является корректным IP-адресом",
 
     // Zend_Validate_Isbn
-    "'%value%' is not a valid ISBN number" => "'%value%' не является корректным номером ISBN",
+    "'%value%' is no valid ISBN number" => "'%value%' не является корректным номером ISBN",
 
     // Zend_Validate_LessThan
     "'%value%' is not less than '%max%'" => "'%value%' не меньше, чем '%max%'",
@@ -234,16 +241,16 @@ return array(
     "'%value%' does not match against pattern '%pattern%'" => "'%value%' не соответствует шаблону '%pattern%'",
 
     // Zend_Validate_Sitemap_Changefreq
-    "'%value%' is not a valid sitemap changefreq" => "'%value%' недопустимое значение для sitemap changefreq",
+    "'%value%' is no valid sitemap changefreq" => "'%value%' недопустимое значение для sitemap changefreq",
 
     // Zend_Validate_Sitemap_Lastmod
-    "'%value%' is not a valid sitemap lastmod" => "'%value%' недопустимое значение для sitemap lastmod",
+    "'%value%' is no valid sitemap lastmod" => "'%value%' недопустимое значение для sitemap lastmod",
 
     // Zend_Validate_Sitemap_Loc
-    "'%value%' is not a valid sitemap location" => "'%value%' недопустимое значение для sitemap location",
+    "'%value%' is no valid sitemap location" => "'%value%' недопустимое значение для sitemap location",
 
     // Zend_Validate_Sitemap_Priority
-    "'%value%' is not a valid sitemap priority" => "'%value%' недопустимое значение для sitemap priority",
+    "'%value%' is no valid sitemap priority" => "'%value%' недопустимое значение для sitemap priority",
 
     // Zend_Validate_StringLength
     "Invalid type given, value should be a string" => "Недопустимый тип данных, значение должно быть строкой",

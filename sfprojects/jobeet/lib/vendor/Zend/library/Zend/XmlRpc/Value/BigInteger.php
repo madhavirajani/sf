@@ -1,34 +1,65 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * Zend Framework
  *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * LICENSE
+ *
+ * This source file is subject to the new BSD license that is bundled
+ * with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://framework.zend.com/license/new-bsd
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@zend.com so we can send you a copy immediately.
+ *
+ * @category   Zend
+ * @package    Zend_XmlRpc
+ * @subpackage Value
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id: Integer.php 17753 2009-08-22 16:09:37Z lars $
  */
 
-namespace Zend\XmlRpc\Value;
 
-use Zend\Math\BigInteger\BigInteger as BigIntegerMath;
+/**
+ * Zend_XmlRpc_Value_Integer
+ */
+require_once 'Zend/XmlRpc/Value/Integer.php';
 
-class BigInteger extends Integer
+
+/**
+ * @category   Zend
+ * @package    Zend_XmlRpc
+ * @subpackage Value
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ */
+class Zend_XmlRpc_Value_BigInteger extends Zend_XmlRpc_Value_Integer
 {
+    /**
+     * @var Zend_Crypt_Math_BigInteger
+     */
+    protected $_integer;
+
     /**
      * @param mixed $value
      */
     public function __construct($value)
     {
-        $this->value = BigIntegerMath::factory()->init($value, 10);
-        $this->type  = self::XMLRPC_TYPE_I8;
+        require_once 'Zend/Crypt/Math/BigInteger.php';
+        $this->_integer = new Zend_Crypt_Math_BigInteger();
+        $this->_value = $this->_integer->init($this->_value);
+
+        $this->_type = self::XMLRPC_TYPE_I8;
     }
 
     /**
      * Return bigint value object
      *
-     * @return string
+     * @return Zend_Crypt_Math_BigInteger
      */
     public function getValue()
     {
-        return $this->value;
+        return $this->_integer;
     }
 }

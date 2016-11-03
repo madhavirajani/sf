@@ -1,10 +1,23 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * Zend Framework
  *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
+ * LICENSE
+ *
+ * This source file is subject to the new BSD license that is bundled
+ * with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://framework.zend.com/license/new-bsd
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@zend.com so we can send you a copy immediately.
+ *
+ * @category   Zend
+ * @package    Zend_Translate
+ * @subpackage Ressource
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id:$
  */
 
 /**
@@ -65,13 +78,13 @@ return array(
 
     // Zend_Validate_EmailAddress
     "Invalid type given, value should be a string" => "Nevalidan tip, vrednost treba da bude tekst",
-    "'%value%' is not a valid email address in the basic format local-part@hostname" => "'%value%' nije validna adresa elektronske pošte u formatu adresa@imehosta",
-    "'%hostname%' is not a valid hostname for email address '%value%'" => "'%hostname%' nije validno ime hosta za adresu elektronske pošte '%value%'",
+    "'%value%' is no valid email address in the basic format local-part@hostname" => "'%value%' nije validna adresa elektronske pošte u formatu adresa@imehosta",
+    "'%hostname%' is no valid hostname for email address '%value%'" => "'%hostname%' nije validno ime hosta za adresu elektronske pošte '%value%'",
     "'%hostname%' does not appear to have a valid MX record for the email address '%value%'" => "'%hostname%' nema validan MX zapis za adresu elektronske pošte '%value%'",
     "'%hostname%' is not in a routable network segment. The email address '%value%' should not be resolved from public network." => "'%hostname%' nije rutabilan mrežni segment. Adresa elektronske pošte '%value%' ne treba da bude razrešena sa javne mreže",
     "'%localPart%' can not be matched against dot-atom format" => "'%localPart%' se ne poklapa sa dot-atom formatom",
     "'%localPart%' can not be matched against quoted-string format" => "'%localPart%' se ne poklapa sa quoted-string formatom",
-    "'%localPart%' is not a valid local part for email address '%value%'" => "'%localPart%' nije validan deo adrese elektronske pošte '%value%'",
+    "'%localPart%' is no valid local part for email address '%value%'" => "'%localPart%' nije validan deo adrese elektronske pošte '%value%'",
     "'%value%' exceeds the allowed length" => "'%value%' prelazi dozvoljenu dužinu",
 
     // Zend_Validate_File_Count
@@ -164,7 +177,7 @@ return array(
 
     // Zend_Validate_File_WordCount
     "Too much words, maximum '%max%' are allowed but '%count%' were counted" => "Previše reči, maksimalno '%max%' je dozvoljeno, '%count%' je izbrojano",
-    "Too few words, minimum '%min%' are expected but '%count%' were counted" => "Premalo reči, minimalno '%min%' je očekivano, '%count%' je izbrojano",
+    "Too less words, minimum '%min%' are expected but '%count%' were counted" => "Premalo reči, minimalno '%min%' je očekivano, '%count%' je izbrojano",
     "File '%value%' could not be found" => "Fajl '%value%' ne može biti pronađen",
 
     // Zend_Validate_Float
@@ -196,7 +209,7 @@ return array(
     "'%value%' has failed the IBAN check" => "'%value%' ne prolazi IBAN proveru",
 
     // Zend_Validate_Identical
-    "The two given tokens do not match" => "Tokeni se ne poklapaju",
+    "The token '%token%' does not match the given token '%value%'" => "Token '%token%' se ne poklapa sa '%value%'",
     "No token was provided to match against" => "Token za proveru nije prosleđen",
 
     // Zend_Validate_InArray
@@ -211,40 +224,34 @@ return array(
     "'%value%' does not appear to be a valid IP address" => "'%value%' nije validna IP adresa",
 
     // Zend_Validate_Isbn
-    "Invalid type given, value should be string or integer" => "Nevalidan tip, vrednost treba da bude tekst ili ceo broj",
-    "'%value%' is not a valid ISBN number" => "'%value%' nije validan ISBN broj",
+    "'%value%' is no valid ISBN number" => "'%value%' nije validan ISBN broj",
 
     // Zend_Validate_LessThan
     "'%value%' is not less than '%max%'" => "'%value%' je manje od '%max%'",
 
     // Zend_Validate_NotEmpty
     "Invalid type given, value should be float, string, array, boolean or integer" => "Nevalidan tip, vrednost treba da bude tekst, broj ili logička vrednost",
-    "Value is required and can't be empty" => "Vrednost je obavezna i ne sme biti prazna",
+    "Value is required and can't be empty" => "Vrednost je obaezna i ne sme biti prazna",
 
     // Zend_Validate_PostCode
-    "Invalid type given. The value should be a string or an integer" => "Nevalidan tip. Vrednost treba da bude tekst ili ceo broj",
-    "'%value%' does not appear to be a postal code" => "'%value%' nije poštanski broj",
+    "Invalid type given, value should be string or integer" => "Nevalidan tip, vrednost treba da bude tekst ili ceo broj",
+    "'%value%' does not appear to be an postal code" => "'%value%' nije poštanski broj",
 
     // Zend_Validate_Regex
     "Invalid type given, value should be string, integer or float" => "Nevalidan tip, vrednost treba da bude tekst ili broj",
     "'%value%' does not match against pattern '%pattern%'" => "'%value%' se ne poklapa sa formatom '%pattern%'",
-    "There was an internal error while using the pattern '%pattern%'" => "Dogodila se greška pri korišćenju formata '%pattern%'",
 
     // Zend_Validate_Sitemap_Changefreq
-    "'%value%' is not a valid sitemap changefreq" => "'%value%' nije validna frekvencija promene mape sajta",
-    "Invalid type given, the value should be a string" => "Nevalidan tip, vrednost treba da bude tekst",
+    "'%value%' is no valid sitemap changefreq" => "'%value%' nije validna frekvencija promene mape sajta",
 
     // Zend_Validate_Sitemap_Lastmod
-    "'%value%' is not a valid sitemap lastmod" => "'%value%' nije validan datum izmene mape sajta",
-    "Invalid type given, the value should be a string" => "Nevalidan tip, vrednost treba da bude tekst",
+    "'%value%' is no valid sitemap lastmod" => "'%value%' nije validan datum izmene mape sajta",
 
     // Zend_Validate_Sitemap_Loc
-    "'%value%' is not a valid sitemap location" => "'%value%' nije validna lokacija mape sajta",
-    "Invalid type given, the value should be a string" => "Nevalidan tip, vrednost treba da bude tekst",
+    "'%value%' is no valid sitemap location" => "'%value%' nije validna lokacija mape sajta",
 
     // Zend_Validate_Sitemap_Priority
-    "'%value%' is not a valid sitemap priority" => "'%value%' nije validan prioritet mape sajta",
-    "Invalid type given, the value should be an integer, a float or a numeric string" => "Nevalidan tip, vrednost treba da bude broj ili numerički niz",
+    "'%value%' is no valid sitemap priority" => "'%value%' nije validan prioritet mape sajta",
 
     // Zend_Validate_StringLength
     "Invalid type given, value should be a string" => "Nevalidan tip, vrednost treba da bude tekst",

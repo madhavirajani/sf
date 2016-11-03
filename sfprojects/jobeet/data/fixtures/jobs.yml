@@ -20,7 +20,7 @@ JobeetJob:
     is_activated: true
     token:        job_sensio_labs1
     email:        job@example.com
-    expires_at:   '2016-12-12'
+    expires_at:   '2017-12-12'
  
   job_extreme_sensio:
     JobeetCategory:  design
@@ -46,7 +46,7 @@ JobeetJob:
     is_activated: true
     token:        job_extreme_sensio2
     email:        job@example.com
-    expires_at:   '2016-12-12'
+    expires_at:   '2017-12-12'
     
   job_extreme_sensio1:
     JobeetCategory:  manager
@@ -72,4 +72,4 @@ JobeetJob:
     is_activated: true
     token:        job_extreme_sensio
     email:        job@example.com
-    expires_at:   '2016-12-12'
+    expires_at:   '2017-12-12'

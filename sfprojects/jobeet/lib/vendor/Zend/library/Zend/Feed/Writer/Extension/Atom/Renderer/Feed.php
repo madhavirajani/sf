@@ -1,22 +1,39 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * Zend Framework
  *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * LICENSE
+ *
+ * This source file is subject to the new BSD license that is bundled
+ * with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://framework.zend.com/license/new-bsd
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@zend.com so we can send you a copy immediately.
+ *
+ * @category   Zend
+ * @package    Zend_Feed_Writer
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id: Feed.php 20326 2010-01-16 00:20:43Z padraic $
  */
-
-namespace Zend\Feed\Writer\Extension\Atom\Renderer;
-
-use DOMDocument;
-use DOMElement;
-use Zend\Feed\Writer\Extension;
-
+ 
 /**
-*/
-class Feed extends Extension\AbstractRenderer
+ * @see Zend_Feed_Writer_Extension_RendererAbstract
+ */
+require_once 'Zend/Feed/Writer/Extension/RendererAbstract.php';
+ 
+/**
+ * @category   Zend
+ * @package    Zend_Feed_Writer
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ */
+class Zend_Feed_Writer_Extension_Atom_Renderer_Feed
+    extends Zend_Feed_Writer_Extension_RendererAbstract
 {
+
     /**
      * Set to TRUE if a rendering method actually renders something. This
      * is used to prevent premature appending of a XML namespace declaration
@@ -24,11 +41,11 @@ class Feed extends Extension\AbstractRenderer
      *
      * @var bool
      */
-    protected $called = false;
-
+    protected $_called = false;
+    
     /**
      * Render feed
-     *
+     * 
      * @return void
      */
     public function render()
@@ -40,55 +57,53 @@ class Feed extends Extension\AbstractRenderer
         if (strtolower($this->getType()) == 'atom') {
             return;
         }
-        $this->_setFeedLinks($this->dom, $this->base);
-        $this->_setHubs($this->dom, $this->base);
-        if ($this->called) {
+        $this->_setFeedLinks($this->_dom, $this->_base);
+        $this->_setHubs($this->_dom, $this->_base);
+        if ($this->_called) {
             $this->_appendNamespaces();
         }
     }
-
+    
     /**
      * Append namespaces to root element of feed
-     *
+     * 
      * @return void
      */
     protected function _appendNamespaces()
     {
         $this->getRootElement()->setAttribute('xmlns:atom',
-            'http://www.w3.org/2005/Atom');
+            'http://www.w3.org/2005/Atom');  
     }
 
     /**
      * Set feed link elements
-     *
-     * @param  DOMDocument $dom
-     * @param  DOMElement $root
+     * 
+     * @param  DOMDocument $dom 
+     * @param  DOMElement $root 
      * @return void
      */
     protected function _setFeedLinks(DOMDocument $dom, DOMElement $root)
     {
         $flinks = $this->getDataContainer()->getFeedLinks();
-        if (!$flinks || empty($flinks)) {
+        if(!$flinks || empty($flinks)) {
             return;
         }
         foreach ($flinks as $type => $href) {
-            if (strtolower($type) == $this->getType()) { // issue 2605
-                $mime  = 'application/' . strtolower($type) . '+xml';
-                $flink = $dom->createElement('atom:link');
-                $root->appendChild($flink);
-                $flink->setAttribute('rel', 'self');
-                $flink->setAttribute('type', $mime);
-                $flink->setAttribute('href', $href);
-            }
+            $mime  = 'application/' . strtolower($type) . '+xml';
+            $flink = $dom->createElement('atom:link');
+            $root->appendChild($flink);
+            $flink->setAttribute('rel', 'self');
+            $flink->setAttribute('type', $mime);
+            $flink->setAttribute('href', $href);
         }
-        $this->called = true;
+        $this->_called = true;
     }
-
+    
     /**
      * Set PuSH hubs
-     *
-     * @param  DOMDocument $dom
-     * @param  DOMElement $root
+     * 
+     * @param  DOMDocument $dom 
+     * @param  DOMElement $root 
      * @return void
      */
     protected function _setHubs(DOMDocument $dom, DOMElement $root)
@@ -103,6 +118,6 @@ class Feed extends Extension\AbstractRenderer
             $hub->setAttribute('href', $hubUrl);
             $root->appendChild($hub);
         }
-        $this->called = true;
+        $this->_called = true;
     }
 }

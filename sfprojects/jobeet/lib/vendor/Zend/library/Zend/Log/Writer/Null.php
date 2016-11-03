@@ -1,35 +1,57 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * Zend Framework
  *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * LICENSE
+ *
+ * This source file is subject to the new BSD license that is bundled
+ * with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://framework.zend.com/license/new-bsd
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@zend.com so we can send you a copy immediately.
+ *
+ * @category   Zend
+ * @package    Zend_Log
+ * @subpackage Writer
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id: Null.php 20096 2010-01-06 02:05:09Z bkarwin $
  */
 
-namespace Zend\Log\Writer;
+/** Zend_Log_Writer_Abstract */
+require_once 'Zend/Log/Writer/Abstract.php';
 
 /**
- * Stub class for backwards compatibility.
- *
- * Since PHP 7 adds "null" as a reserved keyword, we can no longer have a class
- * named that and retain PHP 7 compatibility. The original class has been
- * renamed to "Noop", and this class is now an extension of it. It raises an
- * E_USER_DEPRECATED to warn users to migrate.
- *
- * @deprecated
+ * @category   Zend
+ * @package    Zend_Log
+ * @subpackage Writer
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id: Null.php 20096 2010-01-06 02:05:09Z bkarwin $
  */
-class Null extends Noop
+class Zend_Log_Writer_Null extends Zend_Log_Writer_Abstract
 {
-    public function __construct()
+    /**
+     * Write a message to the log.
+     *
+     * @param  array  $event  event data
+     * @return void
+     */
+    protected function _write($event)
     {
-        trigger_error(
-            sprintf(
-                'The class %s has been deprecated; please use %s\\Noop',
-                __CLASS__,
-                __NAMESPACE__
-            ),
-            E_USER_DEPRECATED
-        );
+    }
+    
+    /**
+     * Create a new instance of Zend_Log_Writer_Null
+     * 
+     * @param  array|Zend_Config $config
+     * @return Zend_Log_Writer_Null
+     * @throws Zend_Log_Exception
+     */
+    static public function factory($config)
+    {
+        return new self();
     }
 }

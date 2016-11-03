@@ -3,6 +3,7 @@ JobeetCategory:
   actAs: { Timestampable: ~ }
   columns:
     name: { type: string(255), notnull: true, unique: true }
+    slug: { type: varchar(255), required: true, index: unique }
  
 JobeetJob:
   actAs: { Timestampable: ~ }

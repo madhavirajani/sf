@@ -1,20 +1,39 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * Zend Framework
  *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * LICENSE
+ *
+ * This source file is subject to the new BSD license that is bundled
+ * with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://framework.zend.com/license/new-bsd
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@zend.com so we can send you a copy immediately.
+ *
+ * @category   Zend
+ * @package    Zend_Controller
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\XmlRpc\Response;
-
-use Zend\XmlRpc\Response as XmlRpcResponse;
+/**
+ * Zend_XmlRpc_Response
+ */
+require_once 'Zend/XmlRpc/Response.php';
 
 /**
  * HTTP response
+ *
+ * @uses Zend_XmlRpc_Response
+ * @category Zend
+ * @package  Zend_XmlRpc
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version $Id: Http.php 20096 2010-01-06 02:05:09Z bkarwin $
  */
-class Http extends XmlRpcResponse
+class Zend_XmlRpc_Response_Http extends Zend_XmlRpc_Response
 {
     /**
      * Override __toString() to send HTTP Content-Type header

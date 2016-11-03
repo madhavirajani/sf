@@ -1,21 +1,41 @@
 <?php
 /**
- * Zend Framework (http://framework.zend.com/)
+ * Zend Framework
  *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
+ * LICENSE
+ *
+ * This source file is subject to the new BSD license that is bundled
+ * with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://framework.zend.com/license/new-bsd
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@zend.com so we can send you a copy immediately.
+ *
+ * @category   Zend
+ * @package    Zend_Filter
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id: Decrypt.php 20096 2010-01-06 02:05:09Z bkarwin $
  */
 
-namespace Zend\Filter;
+/**
+ * @see Zend_Filter_Encrypt
+ */
+require_once 'Zend/Filter/Encrypt.php';
 
 /**
  * Decrypts a given string
+ *
+ * @category   Zend
+ * @package    Zend_Filter
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
-class Decrypt extends Encrypt
+class Zend_Filter_Decrypt extends Zend_Filter_Encrypt
 {
     /**
-     * Defined by Zend\Filter\Filter
+     * Defined by Zend_Filter_Interface
      *
      * Decrypts the content $value with the defined settings
      *
@@ -24,10 +44,6 @@ class Decrypt extends Encrypt
      */
     public function filter($value)
     {
-        if (!is_string($value)) {
-            return $value;
-        }
-
-        return $this->adapter->decrypt($value);
+        return $this->_adapter->decrypt($value);
     }
 }

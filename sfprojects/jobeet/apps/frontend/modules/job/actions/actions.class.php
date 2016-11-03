@@ -9,11 +9,27 @@
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class jobActions extends sfActions {
+// 	public function executeSearch(sfWebRequest $request)
+// 	{
+// 		$this->forwardUnless($query = $request->getParameter('query'), 'job', 'index');
+	
+// 		$this->jobs = Doctrine_Core::getTable('JobeetJob') ->getForLuceneQuery($query);
+// 	}
 	public function executeSearch(sfWebRequest $request)
 	{
 		$this->forwardUnless($query = $request->getParameter('query'), 'job', 'index');
 	
-		$this->jobs = Doctrine_Core::getTable('JobeetJob') ->getForLuceneQuery($query);
+		$this->jobs = Doctrine_Core::getTable('JobeetJob')->getForLuceneQuery($query);
+	
+		if ($request->isXmlHttpRequest())
+		{
+			if ('*' == $query || !$this->jobs)
+			{
+				return $this->renderText('No results.');
+			}
+	
+			return $this->renderPartial('job/list', array('jobs' => $this->jobs));
+		}
 	}
 	public function executeExtend(sfWebRequest $request) {
 		$request->checkCSRFProtection ();
@@ -25,7 +41,7 @@ class jobActions extends sfActions {
 		
 		$this->redirect ( $this->generateUrl ( 'job_show_user', $job ) );
 	}
-	public function executeIndex(sfWebRequest $request) {
+	/*public function executeIndex(sfWebRequest $request) {
 		$this->jobeet_jobs = Doctrine_Core::getTable ( 'JobeetJob' )->createQuery ( 'a' )->execute ();
 		// $this->jobeet_jobs = Doctrine::getTable('JobeetJob')
 		// ->createQuery('a')
@@ -39,6 +55,26 @@ class jobActions extends sfActions {
 		$this->categories = Doctrine_Core::getTable ( 'JobeetCategory' )->getWithJobs ();
 		
 		// $this->jobeet_jobs = Doctrine_Core::getTable('JobeetJob')->getActiveJobs();
+	}*/
+	public function executeIndex(sfWebRequest $request)
+	{
+		if (!$request->getParameter('sf_culture'))
+		{
+			if ($this->getUser()->isFirstRequest())
+			{
+				$culture = $request->getPreferredCulture(array('en', 'fr'));
+				$this->getUser()->setCulture($culture);
+				$this->getUser()->isFirstRequest(false);
+			}
+			else
+			{
+				$culture = $this->getUser()->getCulture();
+			}
+	
+			$this->redirect('localized_homepage');
+		}
+	
+		$this->categories = Doctrine_Core::getTable('JobeetCategory')->getWithJobs();
 	}
 	public function executeShow(sfWebRequest $request) {
 		$this->job = $this->getRoute ()->getObject ();

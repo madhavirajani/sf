@@ -1,35 +1,50 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @link      http://github.com/zendframework/zf2 for the canonical source repository
- * @copyright Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   http://framework.zend.com/license/new-bsd New BSD License
- */
-
-namespace Zend\Filter;
 
 /**
- * Stub class for backwards compatibility.
+ * Zend Framework
  *
- * Since PHP 7 adds "int" as a reserved keyword, we can no longer have a class
- * named that and retain PHP 7 compatibility. The original class has been
- * renamed to "ToInt", and this class is now an extension of it. It raises an
- * E_USER_DEPRECATED to warn users to migrate.
+ * LICENSE
  *
- * @deprecated
+ * This source file is subject to the new BSD license that is bundled
+ * with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://framework.zend.com/license/new-bsd
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@zend.com so we can send you a copy immediately.
+ *
+ * @category   Zend
+ * @package    Zend_Filter
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ * @version    $Id: Int.php 20096 2010-01-06 02:05:09Z bkarwin $
  */
-class Int extends ToInt
+
+
+/**
+ * @see Zend_Filter_Interface
+ */
+require_once 'Zend/Filter/Interface.php';
+
+
+/**
+ * @category   Zend
+ * @package    Zend_Filter
+ * @copyright  Copyright (c) 2005-2010 Zend Technologies USA Inc. (http://www.zend.com)
+ * @license    http://framework.zend.com/license/new-bsd     New BSD License
+ */
+class Zend_Filter_Int implements Zend_Filter_Interface
 {
-    public function __construct()
+    /**
+     * Defined by Zend_Filter_Interface
+     *
+     * Returns (int) $value
+     *
+     * @param  string $value
+     * @return integer
+     */
+    public function filter($value)
     {
-        trigger_error(
-            sprintf(
-                'The class %s has been deprecated; please use %s\\ToInt',
-                __CLASS__,
-                __NAMESPACE__
-            ),
-            E_USER_DEPRECATED
-        );
+        return (int) ((string) $value);
     }
 }
