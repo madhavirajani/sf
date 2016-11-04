@@ -1,15 +1,14 @@
-<?php
+<?php 
 class myUser extends sfBasicSecurityUser
 {
-public function isFirstRequest($boolean = null)
-{
-  if (is_null($boolean))
-  {
-    return $this->getAttribute('first_request', true);
-  }
- 
-  $this->setAttribute('first_request', $boolean);
-}
+	public function isFirstRequest($boolean = null)
+	{
+  		if (is_null($boolean))
+  		{
+    		return $this->getAttribute('first_request', true);
+  		}
+ 		  $this->setAttribute('first_request', $boolean);
+	}
   public function addJobToHistory(JobeetJob $job)
   {
     $ids = $this->getAttribute('job_history', array());
@@ -42,3 +41,4 @@ public function isFirstRequest($boolean = null)
     $this->getAttributeHolder()->remove('job_history');
   }
 }
+?>

@@ -49,14 +49,7 @@ localized_homepage:
 change_language:
   url:   /change_language
   param: { module: language, action: changeLanguage }
-#---
-#job:
-#  url:     /job.:sf_format
-#  class:   sfDoctrineRoute
-#  options: { model: JobeetJob, type: list }
-#  param:   { module: job, action: index, sf_format: html }
-#  requirements: { sf_method: get }
-   
+     
 job_new:
   url:     /job/new.:sf_format
   class:   sfDoctrineRoute
@@ -91,33 +84,6 @@ job_delete:
   options: { model: JobeetJob, type: object }
   param:   { module: job, action: delete, sf_format: html }
   requirements: { sf_method: delete }
- 
-#job_show:
-#  url:     /job/:id.:sf_format
-#  class:   sfDoctrineRoute
-#  options: { model: JobeetJob, type: object }
-#  param:   { module: job, action: show, sf_format: html }
-#  requirements: { sf_method: get }
-  
-#job_show_user:
-#  url:     /job/:company_slug/:location_slug/:id/:position_slug
-#  class:   sfDoctrineRoute
-#  options:
-#    model: JobeetJob
-#    type:  object
-#    method_for_query: retrieveActiveJob
-#  param:   { module: job, action: show }
-#  requirements:
-#    id: \d+
-#    sf_method: [GET]
-
-#category:
-#  url:     /category/:slug.:sf_format
-#  class:   sfDoctrineRoute
-#  param:   { module: category, action: show, sf_format: html }
-#  options: { model: JobeetCategory, type: object }
-#  requirements:
-#    sf_format: (?:html|atom)
     
 api_jobs:
   url:     /api/:token/jobs.:sf_format
@@ -126,20 +92,3 @@ api_jobs:
   options: { model: JobeetJob, type: list, method: getForToken }
   requirements:
     sf_format: (?:xml|json|yaml)
-    
-#affiliate:
-#  class:   sfDoctrineRouteCollection
-#  options:
-#    model: JobeetAffiliate
-#    actions: [new, create]
-#    object_actions: { wait: get }
-
-#job_search:
-#  url:   /search
-#  param: { module: job, action: search }
-#  
-#job_search:
-#  url:   /search.:sf_format
-#  param: { module: job, action: search, sf_format: html }
-#  requirements:
-#    sf_format: (?:html|js)

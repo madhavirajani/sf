@@ -1,3 +1,7 @@
 Nov 02 16:53:48 symfony [err] {sfError404Exception} Empty module and/or action after parsing the URL "/api/index" (/).
 Nov 02 16:53:48 symfony [err] {sfError404Exception} Empty module and/or action after parsing the URL "/category/index" (/).
 Nov 02 16:53:49 symfony [err] {sfError404Exception} Empty module and/or action after parsing the URL "/search" (/).
+Nov 03 18:09:46 symfony [err] {sfError404Exception} Empty module and/or action after parsing the URL "/api/index" (/).
+Nov 03 18:09:47 symfony [err] {sfError404Exception} Empty module and/or action after parsing the URL "/category/index" (/).
+Nov 03 18:09:47 symfony [err] {sfError404Exception} Empty module and/or action after parsing the URL "/search" (/).
+Nov 03 18:09:47 symfony [err] {sfError404Exception} Empty module and/or action after parsing the URL "/language/index" (/).

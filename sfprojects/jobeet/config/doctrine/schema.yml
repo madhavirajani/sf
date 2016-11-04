@@ -1,10 +1,21 @@
 # config/doctrine/schema.yml
+#JobeetCategory:
+#  actAs: { Timestampable: ~ }
+#  columns:
+#    name: { type: string(255), notnull: true, unique: true }
+#    slug: { type: varchar(255), required: true, index: unique }
+# 
+
 JobeetCategory:
-  actAs: { Timestampable: ~ }
+  actAs:
+    Timestampable: ~
+    I18n:
+      fields: [name]
+      actAs:
+        Sluggable: { fields: [name], uniqueBy: [lang, name] }
   columns:
-    name: { type: string(255), notnull: true, unique: true }
-    slug: { type: varchar(255), required: true, index: unique }
- 
+    name: { type: string(255), notnull: true }
+    
 JobeetJob:
   actAs: { Timestampable: ~ }
   columns:

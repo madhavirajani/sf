@@ -9,12 +9,6 @@
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class jobActions extends sfActions {
-// 	public function executeSearch(sfWebRequest $request)
-// 	{
-// 		$this->forwardUnless($query = $request->getParameter('query'), 'job', 'index');
-	
-// 		$this->jobs = Doctrine_Core::getTable('JobeetJob') ->getForLuceneQuery($query);
-// 	}
 	public function executeSearch(sfWebRequest $request)
 	{
 		$this->forwardUnless($query = $request->getParameter('query'), 'job', 'index');
@@ -41,21 +35,6 @@ class jobActions extends sfActions {
 		
 		$this->redirect ( $this->generateUrl ( 'job_show_user', $job ) );
 	}
-	/*public function executeIndex(sfWebRequest $request) {
-		$this->jobeet_jobs = Doctrine_Core::getTable ( 'JobeetJob' )->createQuery ( 'a' )->execute ();
-		// $this->jobeet_jobs = Doctrine::getTable('JobeetJob')
-		// ->createQuery('a')
-		// ->execute();
-		
-		// $q = Doctrine_Query::create()
-		// ->from('JobeetJob j')
-		// ->where('j.created_at > ?', date('Y-m-d H:i:s', time() - 86400 * 30));
-		
-		// $this->jobeet_jobs = $q->execute();
-		$this->categories = Doctrine_Core::getTable ( 'JobeetCategory' )->getWithJobs ();
-		
-		// $this->jobeet_jobs = Doctrine_Core::getTable('JobeetJob')->getActiveJobs();
-	}*/
 	public function executeIndex(sfWebRequest $request)
 	{
 		if (!$request->getParameter('sf_culture'))
